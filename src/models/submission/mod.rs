@@ -4,6 +4,22 @@ use serde_json::Value;
 
 use crate::models::response::BasicListing;
 
+/// GalleryData
+#[derive(Debug, Serialize, Deserialize)]
+pub struct GalleryDataItem {
+    /// The id of this media
+    pub media_id: String,
+    /// The id
+    pub id: u32,
+}
+
+/// GalleryData
+#[derive(Debug, Serialize, Deserialize)]
+pub struct GalleryData {
+    /// The data of each gallery item of this submission
+    pub items: Vec<GalleryDataItem>,
+}
+
 /// SubmissionsData
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SubmissionData {
@@ -59,6 +75,12 @@ pub struct SubmissionData {
     /// This contains the name of the user who approved this submission. This is `None` unless
     /// you are a mod of the subreddit **and** a user has approved this post.
     pub approved_by: Option<String>,
+    /// This is `true` if the media is a gallery
+    pub is_gallery: Option<bool>,
+    /// The media metadata of this submission
+    pub media_metadata: Option<serde_json::Map<String, serde_json::Value>>,
+    /// The gallery data of this submission
+    pub gallery_data: Option<GalleryData>,
     /// This is `true` if the 'nsfw' option has been selected for this submission.
     pub over_18: bool,
     /// This is `true` if the 'spoiler' option has been selected for this submission.
