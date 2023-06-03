@@ -107,6 +107,7 @@ impl Subreddits {
 }
 
 /// Subreddit
+#[derive(Clone)]
 pub struct Subreddit {
     /// Name of subreddit.
     pub name: String,
